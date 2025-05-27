@@ -1,1 +1,5 @@
-/html/
+docs/
+coverage/
+\.lock$
+spec/\.status
+
