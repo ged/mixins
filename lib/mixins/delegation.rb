@@ -69,44 +69,27 @@ module Mixins::Delegation
 	### Make the body of a delegator method that will delegate to the +name+ method
 	### of the object returned by the +delegate+ method.
 	def make_method_delegator( delegate, name )
-		error_frame = caller(5)[0]
-		file, line = error_frame.split( ':', 2 )
-
-		# Ruby can't parse obj.method=(*args), so we have to special-case setters...
-		if name.to_s =~ /(\w+)=$/
-			name = $1
-			code = <<-END_CODE
-			lambda {|*args| self.#{delegate}.#{name} = *args }
-			END_CODE
-		else
-			code = <<-END_CODE
-			lambda {|*args,&block| self.#{delegate}.#{name}(*args,&block) }
-			END_CODE
+		return ->( *args, **kwargs, &block ) do
+			self.__send__( delegate ).__send__( name, *args, **kwargs, &block )
+		rescue => err
+			bt = err.backtrace_locations
+			bt.shift
+			raise( err, err.message, bt, cause: err )
 		end
-
-		return eval( code, nil, file, line.to_i )
 	end
 
 
 	### Make the body of a delegator method that will delegate calls to the +name+
 	### method to the given +ivar+.
-	def make_ivar_delegator( ivar, name )
-		error_frame = caller(5)[0]
-		file, line = error_frame.split( ':', 2 )
-
-		# Ruby can't parse obj.method=(*args), so we have to special-case setters...
-		if name.to_s =~ /(\w+)=$/
-			name = $1
-			code = <<-END_CODE
-			lambda {|*args| #{ivar}.#{name} = *args }
-			END_CODE
-		else
-			code = <<-END_CODE
-			lambda {|*args,&block| #{ivar}.#{name}(*args,&block) }
-			END_CODE
+	def make_ivar_delegator( ivar_name, name )
+		return ->( *args, **kwargs, &block ) do
+			ivar = self.instance_variable_get( ivar_name )
+			ivar.__send__( name, *args, **kwargs, &block )
+		rescue => err
+			bt = err.backtrace_locations
+			bt.shift
+			raise( err, err.message, bt, cause: err )
 		end
-
-		return eval( code, nil, file, line.to_i )
 	end
 
 end # module Delegation
