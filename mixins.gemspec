@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
-# stub: mixins 0.1.0.pre.20250527081241 ruby lib
+# stub: mixins 0.1.0.pre.20250527171116 ruby lib
 
 Gem::Specification.new do |s|
   s.name = "mixins".freeze
-  s.version = "0.1.0.pre.20250527081241".freeze
+  s.version = "0.1.0.pre.20250527171116".freeze
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0".freeze) if s.respond_to? :required_rubygems_version=
   s.metadata = { "bug_tracker_uri" => "https://todo.sr.ht/~ged/Mixins", "changelog_uri" => "https://deveiate.org/code/mixins/History_md.html", "documentation_uri" => "https://deveiate.org/code/mixins", "homepage_uri" => "https://hg.sr.ht/~ged/Mixins", "source_uri" => "https://hg.sr.ht/~ged/Mixins" } if s.respond_to? :metadata=
@@ -12,10 +12,10 @@ Gem::Specification.new do |s|
   s.date = "2025-05-27"
   s.description = "This is a collection of zero-dependency mixins. They\u2019re intended to be generically useful for building other software, well-tested, and not add any non-stdlib dependencies.".freeze
   s.email = ["ged@faeriemud.org".freeze]
-  s.files = [".simplecov".freeze, "History.md".freeze, "README.md".freeze, "Rakefile".freeze, "lib/mixins.rb".freeze, "spec/mixins_spec.rb".freeze, "spec/spec_helper.rb".freeze]
+  s.files = ["History.md".freeze, "LICENSE.txt".freeze, "README.md".freeze, "lib/mixins.rb".freeze, "lib/mixins/data_utilities.rb".freeze, "lib/mixins/datadir.rb".freeze, "lib/mixins/delegation.rb".freeze, "lib/mixins/hooks.rb".freeze, "lib/mixins/inspection.rb".freeze, "lib/mixins/method_utilities.rb".freeze, "spec/mixins/data_utilities_spec.rb".freeze, "spec/mixins/datadir_spec.rb".freeze, "spec/mixins/delegation_spec.rb".freeze, "spec/mixins/hooks_spec.rb".freeze, "spec/mixins/inspection_spec.rb".freeze, "spec/mixins/method_utilities_spec.rb".freeze, "spec/mixins_spec.rb".freeze, "spec/spec_helper.rb".freeze]
   s.homepage = "https://hg.sr.ht/~ged/Mixins".freeze
   s.licenses = ["BSD-3-Clause".freeze]
-  s.rubygems_version = "3.5.11".freeze
+  s.rubygems_version = "3.6.7".freeze
   s.summary = "This is a collection of zero-dependency mixins.".freeze
 
   s.specification_version = 4
