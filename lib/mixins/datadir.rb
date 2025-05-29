@@ -6,19 +6,35 @@ require 'rubygems'
 require 'mixins' unless defined?( Mixins )
 
 
-# When extended in a class, automatically set the path to a DATA_DIR
-# constant, derived from the class name.  Prefers environmental
+# Adds a #data_dir method and a DATA_DIR constant to extended objects. These
+# will be set to the `Pathname` to the data directory distributed with a gem of the
+# name derived from the `#name` of the extended object. Prefers environmental
 # override, Gem path, then local filesystem pathing.
 #
 # This can also be called manually if the including class name doesn't
 # match the gem, or something else esoteric.
 #
-# DATA_DIR is a Pathname object.
+#     require 'mixins'
+#
+#     class Acme
+#         extend Mixins::Datadir
+#     end
+#
+#     # When loading from checked-out source
+#     Rhizos.data_dir
+#     # => #<Pathname:../data/acme>
+#
+#     # With ACME_DATADIR=/path/to/data set in the environment before Ruby starts:
+#     Rhizos.data_dir
+#     # => #<Pathname:/path/to/data>
+#
+#     # When installed via gem
+#     Rhizos.data_dir
+#     # => #<Pathname:/path/to/lib/ruby/gems/3.4.0/gems/acme-1.0.0/data/acme>
 #
 module Mixins::Datadir
 
-	### Extend hook: Set the DATA_DIR constant in the extending
-	### class.
+	### Extend hook: Set up the `data_dir` accessor and the `DATA_DIR` constant
 	###
 	def self::extended( obj )
 		name = obj.name.downcase.gsub( '::', '-' )
@@ -30,10 +46,11 @@ module Mixins::Datadir
 	end
 
 
-	### Return a pathname object for the extended class DATA_DIR.  This
-	### allows for the DATA_DIR constant to be used transparently between
-	### development (local checkout) and production (gem installation)
-	### environments.
+	### Return a pathname object for the gem data directory. Use the `<gemname>_DATADIR`
+	### environment variable if it's set, or the data directory of the loaded gem if
+	### there is one. If neither of those are set, fall back to a relative path of
+	### `../../data/<gemname>`. You can override which environment variable is used for
+	### the override by setting +env+.
 	###
 	def self::find_datadir( gemname, env: nil )
 		unless env

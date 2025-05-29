@@ -5,24 +5,24 @@ require 'mixins' unless defined?( Mixins )
 
 # Methods for declaring hook methods.
 #
-#    class MyClass
-#        extend Mixins::Hooks
+#     class MyClass
+#         extend Mixins::Hooks
 #
-#        define_hook :before_fork
-#        define_hook :after_fork
-#    end
+#         define_hook :before_fork
+#         define_hook :after_fork
+#     end
 #
-#    MyClass.before_fork do
-#        @socket.close
-#    end
-#    MyClass.after_fork do
-#        @socket = Socket.new
-#    end
+#     MyClass.before_fork do
+#         @socket.close
+#     end
+#     MyClass.after_fork do
+#         @socket = Socket.new
+#     end
 #
-#    MyClass.run_before_fork_hook
-#    fork do
-#        MyClass.run_after_fork_hook
-#    end
+#     MyClass.run_before_fork_hook
+#     fork do
+#         MyClass.run_after_fork_hook
+#     end
 #
 #
 module Mixins::Hooks

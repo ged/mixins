@@ -54,11 +54,12 @@ This will install dependencies, and do any other necessary setup for development
 ## Authors
 
 - Michael Granger <ged@faeriemud.org>
+- Mahlon E. Smith <mahlon@martini.nu>
 
 
 ## License
 
-Copyright (c) 2025, Michael Granger
+Copyright (c) 2025, Michael Granger and Mahlon E. Smith
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without

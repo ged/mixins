@@ -8,8 +8,11 @@ require 'mixins' unless defined?( Mixins )
 # A collection of miscellaneous functions that are useful for manipulating
 # complex data structures.
 #
-#   include Ravn::DataUtilities
-#   newhash = deep_copy( oldhash )
+#     include Mixins::DataUtilities
+#     newhash = deep_copy( oldhash )
+#
+#     # or called as a module function
+#     newhash = Mixins::DataUtilities.deep_copy( oldhash )
 #
 module Mixins::DataUtilities
 
