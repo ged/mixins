@@ -4,7 +4,7 @@ home
 : https://hg.sr.ht/~ged/Mixins
 
 code
-: https://hg.sr.ht/~ged/Mixins
+: https://hg.sr.ht/~ged/Mixins/browse
 
 github
 : https://github.com/ged/mixins
