@@ -17,11 +17,9 @@ module Mixins::Inspection
 		details = self.inspect_details
 		details = ' ' + details unless details.empty? || details.start_with?( ' ' )
 
-		return "#<%p:#%x%s>" % [
-			self.class,
-			self.object_id,
-			details,
-		]
+		default = super
+
+		return default.sub( /\s.*\z/, details << '>' )
 	end
 
 
