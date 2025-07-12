@@ -67,7 +67,7 @@ module Mixins::Datadir
 				Pathname( loaded_gemspec.datadir )
 			else
 				caller_path = caller_locations( 2, 1 ).first.absolute_path
-				Pathname( caller_path ).dirname.parent.parent + "data/#{gemname}"
+				Pathname( caller_path ).dirname.parent + "data/#{gemname}"
 			end
 
 		return dir

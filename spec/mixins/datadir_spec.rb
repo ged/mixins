@@ -64,7 +64,7 @@ RSpec.describe( Mixins::Datadir ) do
 		end
 		target_class.extend( described_class )
 
-		local_datadir = Pathname( __FILE__ ).parent.parent.parent / 'data' / 'panda'
+		local_datadir = Pathname( __FILE__ ).parent.parent / 'data' / 'panda'
 
 		expect( target_class.data_dir ).to eq( local_datadir )
 	end
